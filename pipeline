@@ -1,32 +1,32 @@
 pipeline {
-    agent none  // No global agent, since we define agents for each stage
+    agent none  // No global agent, stages will have specific agents
 
     stages {
-        
-
         stage('Build') {
-            agent { label 'node1' }  // Agent with label 'node1' for this stage
+            agent { label 'node1' }  // Use node1 for this stage
             steps {
-                // Example build step (modify as per your project)
+                // Create a directory as part of the build step
                 sh ''' 
-                mkdir -p /root/hello
+                mkdir -p /home/jenkins/hello  // Using a directory with proper permissions
                 '''
             }
         }
 
         stage('Test') {
-            agent { label 'node1' }  // Agent with label 'node1' for this stage
+            agent { label 'node1' }  // Use node1 for this stage
             steps {
+                // Listing the contents of /home/jenkins directory
                 sh ''' 
-                ls /root
+                ls /home/jenkins
                 '''
             }
         }
 
         stage('Deploy') {
-            agent { label 'node1' }  // Agent with label 'node1' for this stage
+            agent { label 'node1' }  // Use node1 for this stage
             steps {
-                echo "dir created" 
+                // Print a success message
+                echo "Directory created and build successful" 
             }
         }
     }
@@ -40,3 +40,4 @@ pipeline {
         }
     }
 }
+
