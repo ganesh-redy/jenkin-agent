@@ -1,4 +1,6 @@
 pipeline {
+    agent none  // No global agent, since we define agents for each stage
+
     stages {
         stage('Checkout') {
             agent { label 'node1' }  // Agent with label 'node1' for this stage
@@ -12,7 +14,7 @@ pipeline {
             agent { label 'node1' }  // Agent with label 'node1' for this stage
             steps {
                 // Example build step (modify as per your project)
-                 sh ''' 
+                sh ''' 
                 mkdir -p /root/hello
                 '''
             }
@@ -30,7 +32,7 @@ pipeline {
         stage('Deploy') {
             agent { label 'node1' }  // Agent with label 'node1' for this stage
             steps {
-                echo " dir created" 
+                echo "dir created" 
             }
         }
     }
