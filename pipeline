@@ -7,7 +7,7 @@ pipeline {
             steps {
                 // Create a directory as part of the build step
                 sh ''' 
-                mkdir -p /home/jenkins/hello  // Using a directory with proper permissions
+                mkdir -p /home/hello  // Using a directory with proper permissions
                 '''
             }
         }
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 // Listing the contents of /home/jenkins directory
                 sh ''' 
-                ls /home/jenkins
+                ls /home/
                 '''
             }
         }
