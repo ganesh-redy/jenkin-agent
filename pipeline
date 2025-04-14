@@ -1,0 +1,46 @@
+pipeline {
+    stages {
+        stage('Checkout') {
+            agent { label 'node1' }  // Agent with label 'node1' for this stage
+            steps {
+                // Pull the code from the repository
+                git 'https://github.com/your-repo/your-project.git'
+            }
+        }
+
+        stage('Build') {
+            agent { label 'node1' }  // Agent with label 'node1' for this stage
+            steps {
+                // Example build step (modify as per your project)
+                 sh ''' 
+                mkdir -p /root/hello
+                '''
+            }
+        }
+
+        stage('Test') {
+            agent { label 'node1' }  // Agent with label 'node1' for this stage
+            steps {
+                sh ''' 
+                ls /root
+                '''
+            }
+        }
+
+        stage('Deploy') {
+            agent { label 'node1' }  // Agent with label 'node1' for this stage
+            steps {
+                echo " dir created" 
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}
