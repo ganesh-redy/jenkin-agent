@@ -2,13 +2,7 @@ pipeline {
     agent none  // No global agent, since we define agents for each stage
 
     stages {
-        stage('Checkout') {
-            agent { label 'node1' }  // Agent with label 'node1' for this stage
-            steps {
-                // Pull the code from the repository
-                git 'https://github.com/your-repo/your-project.git'
-            }
-        }
+        
 
         stage('Build') {
             agent { label 'node1' }  // Agent with label 'node1' for this stage
